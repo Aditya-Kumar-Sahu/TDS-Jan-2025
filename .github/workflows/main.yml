@@ -1,0 +1,25 @@
+name: Daily Commit
+
+on:
+  schedule:
+    # Runs daily at 17:30 UTC (11 PM IST)
+    - cron: "30 23 * * *"
+
+jobs:
+  commit_job:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step: Checkout the repository
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      # Step: Add a commit with your email in the name
+      - name: Commit change by 22f1001951@ds.study.iitm.ac.in
+        run: |
+          echo "Automated commit on $(date)" >> daily_commit.txt
+          git config user.name "GitHub Actions Bot"
+          git config user.email "22f1001951@ds.study.iitm.ac.in"
+          git add daily_commit.txt
+          git commit -m "Daily automated commit on $(date)"
+          git push
