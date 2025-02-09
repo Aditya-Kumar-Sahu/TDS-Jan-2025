@@ -2,7 +2,7 @@ name: Daily Commit
 
 on:
   schedule:
-    - cron: "11 18 * * *"
+    - cron: "15 18 * * *"
   workflow_dispatch: # Allow manual triggers
 
 jobs:
@@ -17,9 +17,9 @@ jobs:
       # Step: Add a commit with your email in the name
       - name: Commit change by 22f1001951@ds.study.iitm.ac.in
         run: |
-          echo "Automated commit on $(date)" >> daily_commit.txt
-          git config user.name "GitHub Actions Bot"
-          git config user.email "22f1001951@ds.study.iitm.ac.in"
+          echo "Automated commit" >> daily_commit.txt
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add daily_commit.txt
-          git commit -m "Daily automated commit on $(date)"
+          git commit -m "Daily automated commit"
           git push
